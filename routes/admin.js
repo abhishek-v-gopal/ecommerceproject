@@ -30,6 +30,13 @@ router.get('/', function(req, res, next) {
 });
 router.get('/addproduct',function(req,res){
 
+  res.render('admin/addproducts')
 
+})
+
+router.post('/addproduct',(req,res)=>{
+  console.log(req.body)
+  console.log(req.files.Image)
+  
 })
 module.exports = router;
