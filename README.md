@@ -18,4 +18,12 @@ added form submit in admin panels
 ## Day 3:(7/12/2023)
 
 Trying to connecting with mongodb and got an error in this phase 
+<br>
 not completed fully little hard to fix the error
+
+## Day 4:(8/12/2023)
+
+Tryed to fix the error but failed:
+
+## Day 5:(9/12/2023)
+

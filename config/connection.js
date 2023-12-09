@@ -22,6 +22,7 @@ const state={
 // }
 module.exports.connect=function(done){
 
+    mongoose.connect(url)
     .then((client) => {
       state.db=client.db(dbname)
             done()

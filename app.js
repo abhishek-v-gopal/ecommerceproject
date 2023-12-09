@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require("mongoose");
 
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
@@ -28,10 +29,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
 db.connect(()=>{
-  if(err)
-  console.log("connection error"+err)
-  else
-  console.log("database connected port 27017")
+  mongoose.connect('mongodb://localhost:27017')
+  .then(() => {
+    console.log("database connected port 27017")
+  })
+  .catch((err) => {
+    console.log("connection error"+err)
+  });
+
+  // if(err)
+  // console.log("connection error"+err)
+  // else
+  // console.log("database connected port 27017")
 })
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
