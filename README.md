@@ -27,3 +27,10 @@ Tryed to fix the error but failed:
 
 ## Day 5:(9/12/2023)
 
+Due to some busy shedule I am not able to do anything on this day
+
+## Day 6:(10/12/2023)
+
+Due to some busy shedule I am not able to do anything on this day
+
+## Day 7:(11/12/2023)
