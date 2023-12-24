@@ -1,3 +1,4 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -28,20 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
-db.connect((err)=>{
-  mongoose.connect('mongodb://localhost:27017')
-  .then(() => {
-    console.log("database connected port 27017")
-  })
-  .catch((err) => {
-    console.log("connection error"+err)
-  });
-
-  // if(err)
-  // console.log("connection error"+err)
-  // else
-  // console.log("database connected port 27017")
-})
+db.connect()
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
 
