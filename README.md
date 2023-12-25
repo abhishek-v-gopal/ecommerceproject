@@ -42,4 +42,6 @@ Due to helth issues and all i am taking a break
 Back to track 
 mongodb connected
 
-## Day 9:()
+## Day 9:(25/12/2023)
+
+Trying to insert data to mongodb  <!-- at 11: am  -->
