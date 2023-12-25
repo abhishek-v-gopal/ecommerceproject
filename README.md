@@ -46,4 +46,8 @@ mongodb connected
 
 Trying to insert data to mongodb  <!-- at 11: am  -->
 Data is inserted 
-but suddenly the app is crashed (trying to resolve)
+but suddenly the app is crashed 
+
+## Day 10:(26/12/2023)
+
+trying to resolve
