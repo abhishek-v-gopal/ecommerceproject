@@ -51,3 +51,7 @@ but suddenly the app is crashed
 ## Day 10:(26/12/2023)
 
 trying to resolve
+<br>
+problem resolved
+<br>
+show cased the product added by the admin into admin port and user port
