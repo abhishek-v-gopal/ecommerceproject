@@ -14,15 +14,18 @@ router.get('/', function(req, res, next) {
   })
   
 });
-router.get('login',(req,res)=>{
+router.get('/login',(req,res)=>{
   res.render('users/login')
 })
 router.get('/signup',(req,res)=>{
-  res.render('users/signup')
+  res.render('users/signup') 
 })
 router.post('/signup',(req,res)=>{
   userHelper.doSignup(req.body).then((response)=>{
     console.log(response)
   })
+ }) 
+ router.post('/login',(req,res)=>{
+   userHelper.doLogin(req.body)
  })
 module.exports = router;
