@@ -8,9 +8,11 @@ const { response } = require('../app');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  let user=req.session.user
+  console.log(user)
   productHelpers.getallproducts().then((product)=>{
-    console.log(product)
-    res.render('users/view-products',{product})
+
+    res.render('users/view-products',{product,user})
   })
   
 });
@@ -26,6 +28,18 @@ router.post('/signup',(req,res)=>{
   })
  }) 
  router.post('/login',(req,res)=>{
-   userHelper.doLogin(req.body)
+   userHelper.doLogin(req.body).then((response)=>{
+    if(response.status){
+      req.session.loggedIn=true
+      req.session.user=response.user
+      res.redirect('/')
+    }else{
+      res.redirect('/login')
+    }
+   })
+ })
+ router.get('/logout',(req,res)=>{
+  req.session.destroy()
+  res.redirect('/login')
  })
 module.exports = router;

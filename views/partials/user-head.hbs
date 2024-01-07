@@ -17,9 +17,19 @@
           <a class="nav-link" href="#">Orders</a>
         </li>
       </ul>
-      
+     
       {{!-- account section --}}
- <a class="btn btn-primary" href="/login" role="button">login</a>
+ <a class="btn btn-primary" href="/login" role="button"> {{#if user}}
+        {{user.name}}
+        {{else}}
+        Account
+      {{/if}}</a>
+
+      <a class="btn btn-primary" href="/logout" role="button"> {{#if user}}
+        logout
+        {{else}}
+        login
+      {{/if}}</a>
 
     </div>
   </div>

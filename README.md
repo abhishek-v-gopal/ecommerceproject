@@ -58,4 +58,4 @@ show cased the product added by the admin into admin port and user port
 
 ## Day 11:(7/01/2024)
 
-added signing and login pages for user
+added signing login and logout pages for user
