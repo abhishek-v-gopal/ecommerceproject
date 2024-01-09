@@ -15,5 +15,8 @@ module.exports={
             let product=await db.collection(collection.PRODUCT_COLLECTION).find().toArray()
             resolve(product)
         })
+    },
+    deleteProduct:(productId)=>{
+        
     }
 }

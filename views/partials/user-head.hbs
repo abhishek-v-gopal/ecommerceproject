@@ -11,11 +11,13 @@
           <a class="nav-link active" aria-current="page" href="#">products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">cart</a>
+          <a class="nav-link" href="/cart">cart</a>
         </li>
+        {{#if user}}
         <li class="nav-item">
           <a class="nav-link" href="#">Orders</a>
         </li>
+        {{/if}}
       </ul>
      
       {{!-- account section --}}

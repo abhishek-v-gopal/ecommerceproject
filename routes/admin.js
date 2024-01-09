@@ -39,4 +39,8 @@ router.post('/addproduct',(req,res)=>{
   })
   
 })
+router.get('/delet-product/:id',(req,res)=>{
+    let productId=req.params.id
+    console.log(productId)
+})
 module.exports = router;
