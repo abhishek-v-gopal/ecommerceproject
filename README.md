@@ -62,4 +62,8 @@ added signing login and logout pages for user
 
 ## Day 12:(9/01/2024)
 
-added delete option fixed the error 
+delete error 
+
+## Day 13:(10/01/2024)
+
+delete error fixed
