@@ -34,6 +34,7 @@ router.post('/addproduct',(req,res)=>{
         console.log(err)
       }else{
         console.log("file uploaded")
+        res.redirect('/admin/')
       }
     })
   })

@@ -38,6 +38,7 @@ router.get('/signup',(req,res)=>{
 router.post('/signup',(req,res)=>{
   userHelper.doSignup(req.body).then((response)=>{
     console.log(response)
+    req.session.loggedIn.user
   })
  }) 
  router.post('/login',(req,res)=>{

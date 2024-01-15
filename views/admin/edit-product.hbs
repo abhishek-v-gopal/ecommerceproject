@@ -18,8 +18,9 @@
                     <input type="text" name="description" class="form-control" value="{{product.description}}">
 
                     <label for="">Image</label>
-                    <img src="/prodcut-images/{{product._id}}.jpg" alt="" style="width: 10%;height:auto;" >
-                    <input type="file" name="Image" class="form-control">
+                    <br>
+                    <img src="/product-images/{{product._id}}.jpg" alt="" style="width: 10%;height:auto;" >
+                    <input type="file" name="Image" class="form-control" onchange="viewImage(event)">
 
                     <button type="submit" class="btn btn-success mt-4">Submit</button>
                 </form>
@@ -27,3 +28,10 @@
         </div>
     </div>
 </section>
+
+{{!-- <script>
+    function viewImage(event){
+        var inputFile = document.getElementById('Image');
+        document.getElementById('imgView').src = URL.createObjectURL(inputFile.files[0]);
+    }
+</script> --}}

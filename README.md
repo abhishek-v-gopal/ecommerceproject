@@ -76,4 +76,6 @@ edit feature is added
 
 enhancing edit feature
 
-## Day 25:()
+## Day 25:(15/01/2024)
+
+Image appearing when the file is choosen property have some malufunctions 
