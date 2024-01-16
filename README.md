@@ -68,7 +68,7 @@ delete error
 
 delete error fixed
 
-## Day 24:(13/01/2024)
+## Day 14:(13/01/2024)
 
 started working on edit feature
 
@@ -76,6 +76,8 @@ edit feature is added
 
 enhancing edit feature
 
-## Day 25:(15/01/2024)
+## Day 15:(15/01/2024)
 
 Image appearing when the file is choosen property have some malufunctions 
+
+## Day 16:()
