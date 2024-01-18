@@ -1,6 +1,10 @@
 var db=require('../config/connection')
 var collection=require('../config/collection')
 const bcrypt=require('bcrypt')
+const {ObjectId}=require('mongodb') 
+const { Collection } = require('mongoose')
+const e = require('express')
+const { response } = require('../app')
 module.exports={
     doSignup: (userData)=>{
         return new Promise(async(resolve,reject)=>{
@@ -32,6 +36,22 @@ module.exports={
                 console.log('email not match')
                 resolve({status:false})
 
+            }
+        })
+    },
+    addTOCart:(productID,userID)=>{
+        return new Promise(async(resolve,reject)=>{
+            let userCart=await db.collection(Collection.CART_COLLECTION).findOne({user:new ObjectId(userID)})
+            if(userCart){
+
+            }else{
+                let cartObj={
+                    user:ObjectId(userID),
+                    products:[ObjectId(productID)]
+                }
+                db.collection(collection.CART_COLLECTION).insertOne(cartObj).then((response)=>{
+                    resolve()
+                })
             }
         })
     }
