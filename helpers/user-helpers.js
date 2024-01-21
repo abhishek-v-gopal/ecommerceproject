@@ -39,19 +39,21 @@ module.exports={
             }
         })
     },
-    addTOCart:(productID,userID)=>{
+    addTOCart: (productID,userID)=>{
         return new Promise(async(resolve,reject)=>{
-            let userCart=await db.collection(Collection.CART_COLLECTION).findOne({user:new ObjectId(userID)})
+            let userCart=await db.collection(collection.CART_COLLECTION).findOne({user:new ObjectId(userID)})
             if(userCart){
 
             }else{
                 let cartObj={
-                    user:ObjectId(userID),
-                    products:[ObjectId(productID)]
+                    user:new ObjectId(userID),
+                    products:[new ObjectId(productID)]
                 }
                 db.collection(collection.CART_COLLECTION).insertOne(cartObj).then((response)=>{
                     resolve()
-                })
+                }).catch((error) => {
+                    reject(error);
+                });
             }
         })
     }

@@ -66,8 +66,9 @@ router.post('/signup',(req,res)=>{
  })
 
  router.get('/add-to-cart/:id',verifylogin,(req,res)=>{
-   
-   userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
+    console.log(req.params.id)
+    console.log(req.session.user._id)
+   userHelper.addTOCart(req.params.id,req.session.user._id).then(()=>{
     res.redirect('/')
    })
  })
