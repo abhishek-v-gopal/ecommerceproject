@@ -78,7 +78,7 @@ module.exports={
                             {
                                $match:{
                                 $expr:{
-                                    $in:['$_id',"$$productlist"]
+                                    $in:['$_id',"$$productslist"]
                                 }
                                }  
                             }
@@ -88,7 +88,7 @@ module.exports={
                 } 
                     
             ]).toArray()
-            resolve(cartItems)
+            resolve(cartItems[0].cartItems)
         })
     }
 }
