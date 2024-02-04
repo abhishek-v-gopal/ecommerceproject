@@ -12,13 +12,11 @@ const verifylogin=(req,res,next)=>{
     res.redirect('/login')
   }
  }
-
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let user=req.session.user
   console.log(user)
+  let cartCount=userHelpers.getCartCount(req.session.user._id)
   productHelpers.getallproducts().then((product)=>{
 
     res.render('users/view-products',{product,user})

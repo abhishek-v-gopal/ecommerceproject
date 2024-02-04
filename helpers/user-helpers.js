@@ -117,5 +117,10 @@ module.exports={
             console.log(cartItems);
             resolve(cartItems[0].cartItems)
         })
+    },
+    getCartCount:(userID)=>{
+        return new Promise((resolve,reject)=>{
+            let 
+        })
     }
 }
