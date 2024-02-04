@@ -61,9 +61,9 @@ router.post('/signup',(req,res)=>{
   res.redirect('/login')
  })
  router.get('/cart',verifylogin,async(req,res)=>{
-  let products=await userHelper.getCartProducts(req.session._id)
+  let products=await userHelper.getCartProducts(req.session.user._id)
   console.log(products)
-  res.render('users/cart')
+  res.render('users/cart',{products,user:req.session.user})
  })
 
  router.get('/add-to-cart/:id',verifylogin,(req,res)=>{

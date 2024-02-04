@@ -68,26 +68,53 @@ module.exports={
         return new Promise(async(resolve,reject)=>{
             let cartItems=await db.collection(collection.CART_COLLECTION).aggregate([
                 {
-                    $match:{user:new ObjectId(userID)}
+                    $match: { user:new ObjectId(userID) }
                 },
+                // {
+                //     $unwind: '$products'
+                // },
+                // {
+                //     $project: {
+                //         item: '$products.item',
+                //         quantity: '$products.quantity'
+                //     }
+                // },
+                // {
+                //     $lookup: {
+                //         from: collection.PRODUCT_COLLECTION,
+                //         localField: 'item',
+                //         foreignField: '_id',
+                //         as: 'product' 
+                //     }
+                // },
+                // {
+                //     $project: {
+                //         item: 1,
+                //         quantity: 1,
+                //         product: { $arrayElemAt: ['$product', 0] }
+                //     }
+                // }
+
                 {
-                    $lookup:{
-                        from:collection.PRODUCT_COLLECTION,
-                        let:{productslist:'$products'},
-                        pipeline:[
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        let :{prodList: '$products'},
+                        pipeline: [
                             {
-                               $match:{
-                                $expr:{
-                                    $in:['$_id',"$$productslist"]
+                                $match: {
+                                    $expr: {
+                                        $in: ['$_id', "$$prodList"]
+                                    } 
                                 }
-                               }  
                             }
                         ],
-                        as:'cartItems'
+                        as: 'cartItems'
                     }
-                } 
-                    
+                }
+
             ]).toArray()
+            // resolve(cartItems)
+            console.log(cartItems);
             resolve(cartItems[0].cartItems)
         })
     }
