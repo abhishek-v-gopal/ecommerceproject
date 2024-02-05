@@ -13,12 +13,16 @@ const verifylogin=(req,res,next)=>{
   }
  }
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async (req,res,next)=>{
   let user=req.session.user
   console.log(user)
-  let cartCount=userHelpers.getCartCount(req.session.user._id)
+  let cartCount=null
+  if(req.session.user){
+ 
+    cartCount=await userHelper.getCartCount(req.session.user._id)
+}
   productHelpers.getallproducts().then((product)=>{
-    res.render('users/view-products',{product,user})
+    res.render('users/view-products',{product,user,cartCount})
   })
   
 });
@@ -66,6 +70,7 @@ router.post('/signup',(req,res)=>{
  router.get('/add-to-cart/:id',verifylogin,(req,res)=>{
     console.log(req.params.id)
     console.log(req.session.user._id)
+    console.log("api call")
    userHelper.addTOCart(req.params.id,req.session.user._id).then(()=>{
     res.redirect('/')
    })
