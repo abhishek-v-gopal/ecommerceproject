@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
   console.log(user)
   let cartCount=userHelpers.getCartCount(req.session.user._id)
   productHelpers.getallproducts().then((product)=>{
-
     res.render('users/view-products',{product,user})
   })
   
