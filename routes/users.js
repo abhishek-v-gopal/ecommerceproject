@@ -71,7 +71,7 @@ router.post('/signup',(req,res)=>{
     console.log(req.params.id)
     console.log(req.session.user._id)
     console.log("api call")
-   userHelper.addTOCart(req.params.id,req.session.user._id).then(()=>{
+   userHelper.addToCart(req.params.id,req.session.user._id).then(()=>{
     res.redirect('/')
    })
  })

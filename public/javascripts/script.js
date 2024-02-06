@@ -1,4 +1,4 @@
-function addToCart(productID)
+function addToCart(productID){
     $.ajax({
         url:'/add-to-cart'+productID,
         method:'get',
@@ -6,3 +6,4 @@ function addToCart(productID)
             alert(response)
         }
     })
+}
