@@ -81,3 +81,7 @@ enhancing edit feature
 Image appearing when the file is choosen property have some malufunctions 
 
 ## Day 16:()
+
+
+
+Step 23 finished
