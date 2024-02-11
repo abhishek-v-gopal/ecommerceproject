@@ -57,7 +57,7 @@ module.exports={
                     }).then(()=>{
                         resolve()
                     })
-                }
+                }else
                 {
                 db.collection(collection.CART_COLLECTION).updateOne({user:new ObjectId(userID)},
                 {
@@ -87,23 +87,24 @@ module.exports={
                 {
                     $match: { user:new ObjectId(userID) }
                 },
-                // {
-                //     $unwind: '$products'
-                // },
-                // {
-                //     $project: {
-                //         item: '$products.item',
-                //         quantity: '$products.quantity'
-                //     }
-                // },
-                // {
-                //     $lookup: {
-                //         from: collection.PRODUCT_COLLECTION,
-                //         localField: 'item',
-                //         foreignField: '_id',
-                //         as: 'product' 
-                //     }
-                // },
+                {
+                    $unwind: '$products'
+                },
+                {
+                    $project: {
+                        item :'$products.item',
+                        quantity : '$products.quantity'
+                    }
+                },
+                {
+                    $lookup: {
+                        from:collection.PRODUCT_COLLECTION,
+                        localField:'item',
+                        foreignField:'_id',
+                        as: 'product'
+                    }
+                }
+               
                 // {
                 //     $project: {
                 //         item: 1,
@@ -112,27 +113,10 @@ module.exports={
                 //     }
                 // }
 
-                // {
-                //     $lookup: {
-                //         from: collection.PRODUCT_COLLECTION,
-                //         let :{prodList: '$products'},
-                //         pipeline: [
-                //             {
-                //                 $match: {
-                //                     $expr: {
-                //                         $in: ['$_id', "$$prodList"]
-                //                     } 
-                //                 }
-                //             }
-                //         ],
-                //         as: 'cartItems'
-                //     }
-                // }
-
             ]).toArray()
             // resolve(cartItems)
-            console.log(cartItems);
-            resolve(cartItems[0].cartItems)
+            console.log(cartItems[0].product);
+            resolve(cartItems)
         })
     },
     getCartCount:(userID)=>{
