@@ -51,10 +51,10 @@ module.exports={
                 let proExist=userCart.products.findIndex(product=> product.item==productID)
                 console.log(proExist)
                 if(proExist!=-1){
-                    db.collection(collection.CART_COLLECTION).updateOne({'products.item':new ObjectId(productID)}),
+                    db.collection(collection.CART_COLLECTION).updateOne({'products.item':new ObjectId(productID)},
                     {
                         $inc:{'products.$.quantity':1}
-                    }.then(()=>{
+                    }).then(()=>{
                         resolve()
                     })
                 }
@@ -112,22 +112,22 @@ module.exports={
                 //     }
                 // }
 
-                {
-                    $lookup: {
-                        from: collection.PRODUCT_COLLECTION,
-                        let :{prodList: '$products'},
-                        pipeline: [
-                            {
-                                $match: {
-                                    $expr: {
-                                        $in: ['$_id', "$$prodList"]
-                                    } 
-                                }
-                            }
-                        ],
-                        as: 'cartItems'
-                    }
-                }
+                // {
+                //     $lookup: {
+                //         from: collection.PRODUCT_COLLECTION,
+                //         let :{prodList: '$products'},
+                //         pipeline: [
+                //             {
+                //                 $match: {
+                //                     $expr: {
+                //                         $in: ['$_id', "$$prodList"]
+                //                     } 
+                //                 }
+                //             }
+                //         ],
+                //         as: 'cartItems'
+                //     }
+                // }
 
             ]).toArray()
             // resolve(cartItems)
