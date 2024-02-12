@@ -14,7 +14,11 @@
                     <td><img src="/product-images/{{this.product._id}}.jpg" alt="" style="width: 70px;height: 70px;"></td>
                     <td>{{this.product.Name}}</td>
                     <td>
-                        <button class="cart-item-cout mr-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',-1)">-</button>{{this.quantity}}<button class="cart-item-cout ml-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',1)">+</button>
+                        {{#if this.quantity > 1}}
+                        <button class="cart-item-cout mr-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
+                        {{/if}}
+                        {{this.quantity}}
+                        <button class="cart-item-cout ml-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',1)">+</button>
                     </td>
                     <td>
                         <a href="" class="btn btn-danger">Remove</a>
