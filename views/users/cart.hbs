@@ -15,6 +15,7 @@
                     <td>{{this.product.Name}}</td>
                     <td>
                         {{#if this.quantity > 1}}
+                        
                         <button class="cart-item-cout mr-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
                         {{/if}}
                         {{this.quantity}}
