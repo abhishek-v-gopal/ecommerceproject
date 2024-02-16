@@ -14,11 +14,8 @@
                     <td><img src="/product-images/{{this.product._id}}.jpg" alt="" style="width: 70px;height: 70px;"></td>
                     <td>{{this.product.Name}}</td>
                     <td>
-                        {{#if this.quantity > 1}}
-                        
                         <button class="cart-item-cout mr-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
-                        {{/if}}
-                        {{this.quantity}}
+                        <span id="{{this.product._id}}">{{this.quantity}}</span>
                         <button class="cart-item-cout ml-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',1)">+</button>
                     </td>
                     <td>
@@ -36,16 +33,24 @@
 
 <script>
     function changequantity(cartId,productId,count){
+        let quantity=parseInt(document.getElementById(productId).innerHTML)
+        count=parseInt(count)
         $.ajax({
             url:'/change-product-quantity',
             data:{
                 cart: cartId,
                 product: productId,
-                count: count
+                count: count,
+                quantity:quantity
             },
             method: 'post',
             success:(response)=>{
-                alert()
+                if(response.removeProduct){
+                    alert("Product Removed from cart")
+                    location.reload()
+                }else{
+                    document.getElementById(productId).innerHTML=quantity+count
+                }
             }
         })
     }
