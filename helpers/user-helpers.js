@@ -122,7 +122,7 @@ module.exports={
 
             ]).toArray()
             // resolve(cartItems)
-            console.log(cartItems[0].product);
+            // console.log(cartItems[0].product)\
             resolve(cartItems)
         })
     },
@@ -139,13 +139,26 @@ module.exports={
     },
     ChangeProductQuantity:(details)=>{
         details.count=parseInt(details.count)
+        details.quantity=parseInt(details.quantity)
+
         return new Promise((resolve,reject)=>{
-            db.collection(collection.CART_COLLECTION).updateOne({_id:new ObjectId(details.cart),'products.item':new ObjectId(details.product)},
-                    {
-                        $inc:{'products.$.quantity':details.count}
-                    }).then(()=>{
-                        resolve()
-                    }) 
+            if(details.count==-1 && details.quantity==1){
+                db.collection(collection.CART_COLLECTION).updateOne({_id:new ObjectId(details.cart)},
+                {
+                    $pull:{products:{item:new ObjectId(details.product)}}
+                }
+                ).then((response)=>{
+                    resolve({removeProduct:true})
+                })
+
+            }else{
+                db.collection(collection.CART_COLLECTION).updateOne({_id:new ObjectId(details.cart),'products.item':new ObjectId(details.product)},
+                        {
+                            $inc:{'products.$.quantity':details.count}
+                        }).then((response)=>{
+                            resolve(true)
+                        }) 
+            }
         })
     }
 }

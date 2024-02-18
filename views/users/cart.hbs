@@ -5,6 +5,7 @@
                 <tr>
                     <th scope="col">Item</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Prize</th>
                     <th scope="col">Quantity</th>
                 </tr>
             </thead>
@@ -13,6 +14,7 @@
                 <tr>
                     <td><img src="/product-images/{{this.product._id}}.jpg" alt="" style="width: 70px;height: 70px;"></td>
                     <td>{{this.product.Name}}</td>
+                    <td>{{this.product.Price}}</td>
                     <td>
                         <button class="cart-item-cout mr-3" onclick="changequantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
                         <span id="{{this.product._id}}">{{this.quantity}}</span>
@@ -45,11 +47,13 @@
             },
             method: 'post',
             success:(response)=>{
+                console.log("a")
+                console.log(response)
                 if(response.removeProduct){
                     alert("Product Removed from cart")
                     location.reload()
                 }else{
-                    document.getElementById(productId).innerHTML=quantity+count
+                    document.getElementById(productId).innerHTML = quantity+count
                 }
             }
         })

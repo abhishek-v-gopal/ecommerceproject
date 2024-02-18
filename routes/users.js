@@ -79,7 +79,7 @@ router.post('/signup',(req,res)=>{
  router.post('/change-product-quantity',(req,res,next)=>{
   console.log(req.body)
   userHelper.ChangeProductQuantity(req.body).then(()=>{
-    
+    res.json(response)
   })
  })
 
