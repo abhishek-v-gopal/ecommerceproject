@@ -83,4 +83,10 @@ router.post('/signup',(req,res)=>{
   })
  })
 
+ router.post('/remove-cart-product', (req, res) => {
+  userHelper.removeCartProduct(req.body)
+    res.redirect('/cart')
+})
+
+
 module.exports = router;

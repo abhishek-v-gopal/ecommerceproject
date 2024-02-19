@@ -160,5 +160,17 @@ module.exports={
                         }) 
             }
         })
+    },
+    removeCartProduct: (details) => {
+        return new Promise((resolve, reject) => {
+            db.collection(collection.CART_COLLECTION)
+                .updateOne({_id:new ObjectId(details.cart)},
+                {
+                    $pull: {products: {item:new ObjectId(details.product)} }
+                }
+            ).then((response)=>{
+                resolve()
+            })
+        })
     }
 }
