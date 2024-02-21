@@ -88,5 +88,10 @@ router.post('/signup',(req,res)=>{
     res.redirect('/cart')
 })
 
+router.get('/place-order',verifylogin, async(req,res)=>{
+  let total=await userHelper.getTotalAmount(req.session._id)
+  res.render('users/place-order',{total})
+})
+
 
 module.exports = router;

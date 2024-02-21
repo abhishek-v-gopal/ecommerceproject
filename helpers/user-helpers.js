@@ -172,5 +172,62 @@ module.exports={
                 resolve()
             })
         })
+    },
+    getTotalAmount: (userID)=>{
+        return new Promise(async(resolve,reject)=>{
+            let total=await db.collection(collection.CART_COLLECTION).aggregate([
+                {
+                    $match: { user:new ObjectId(userID) }
+                },
+                {
+                    $unwind: '$products'
+                },
+                {
+                    $project: {
+                        item :'$products.item',
+                        quantity : '$products.quantity'
+                    }
+                },
+                {
+                    $lookup: {
+                        from:collection.PRODUCT_COLLECTION,
+                        localField:'item',
+                        foreignField:'_id',
+                        as: 'product'
+                    }
+                },
+                {
+                    $project:{
+                        item: 1,
+                        quantity: 1,
+                        product: {$arrayElemAt: ['$product', 0]}
+
+                    }
+                },
+                {
+                    $group:{
+                        _id:null,
+                        total:{$sum:{$multiply:['$quantity','$product.Price']}}
+                    }
+                }
+               
+                // {
+                //     $project: {
+                //         item: 1,
+                //         quantity: 1,
+                //         product: { $arrayElemAt: ['$product', 0] }
+                //     }
+                // }
+
+            ]).toArray()
+            if (total && total[0] && total[0].total !== undefined) {
+                console.log(total[0].total);
+                resolve(total[0].total)
+            } else {
+                console.error("Total is undefined or does not have the expected structure.");
+            }
+            
+        })
+
     }
 }
